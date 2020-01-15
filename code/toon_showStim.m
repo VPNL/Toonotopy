@@ -10,7 +10,7 @@ function toon_showStim(path,stimFile)
 % path      full path to stimFile
 % stimFile  name of stim_file
 %
-% kgs 2020
+% KGS & DF 2020
 
 if notDefined('path')
     if isunix
