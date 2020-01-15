@@ -15,7 +15,8 @@ Task: fixate and response with a button press when the fixation color changes
 
 To visualize the stimuli sequence: toon_showStim.m
 
-## WorkFlow for analyzing (see toon_workflow.m)
+## Work flow for analyzing 
+See toon_workflow.m for details
 1. Initialize the data for mrvista: toon_init.m
 2. Manually align inplane anatomy to volume anatomy using rxAlign.m
 3. Motion correction, within and between scans: toon_motionCorrect.m
