@@ -4,6 +4,10 @@ data/TestSubject/TestSubject_190725/Inplane/
 data/TestSubject/TestSubject_190725/Gray/
 data/TestSubject/TestSubject_190725/*.mat
 data/TestSubject/TestSubject_190725/*.nii.gz
+data/TestSubject/TestSubject_190725/*.txt
+data/TestSubject/TestSubject_190725/*._
+data/TestSubject/*._
+data/*._
 
 #Ignore powerpoints and pdfs
 *.pdf
@@ -11,3 +15,4 @@ data/TestSubject/TestSubject_190725/*.nii.gz
 *.pptx
 
 *._
+*DS_Store

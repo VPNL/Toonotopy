@@ -17,18 +17,16 @@ cd(subjectDir)
 mrVista
 % Using GUI: load mean map & check that functionals match Inplane anatomicals
 % Best visualization: threshold mean map at around 500-1000 to see anatomical underlay
-toon_init(baseDir, expt, session);
 
 %% Align inplane anatomy to volume anatomy
 rxAlign;
 
 %% motion correct session
 % TestSubject has been initialized and aligned; Start here
-
 toon_motionCorrect(baseDir, expt, session);
 
 %% install segmentation, transform tSeries to Gray, and average time series
 toon_2gray(baseDir, expt, session)
 
 %% run CSS pRF model
- toon_prfRun(baseDir, expt, session, paramPath, imgPath)
+toon_prfRun(baseDir, expt, session, paramPath, imgPath)
