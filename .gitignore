@@ -1,4 +1,4 @@
-#Ignore data except stim files without have to move gitignore
+#Ignore data except stim files without having to move gitignore
 data/TestSubject/TestSubject_190725/3DAnatomy/
 data/TestSubject/TestSubject_190725/Inplane/
 data/TestSubject/TestSubject_190725/Gray/

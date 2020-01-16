@@ -1,7 +1,7 @@
 
-# Wide field Toonotopy
+# Wide field toonotopy
 
-Wide field Toonotopy is an experiment designed in 2018. It is used to map pRFs across the entire visual system.
+Wide field toonotopy is an experiment designed in 2018. It is used to map pRFs across the entire visual system.
 
 During the experiments participants view while fixating a traveling bar sweepingthe visual field in 4 directions in the following sequence:
 left-> right
@@ -21,7 +21,7 @@ See toon_workflow.m for details
 2. Manually align inplane anatomy to volume anatomy using rxAlign.m
 3. Motion correction, within and between scans: toon_motionCorrect.m
 4. Install segmentation. Transform time series from inplane to volume anatomy, and average the time series: toon_2gray.m
-5. run pRF CSS model (Dumoulin 2008; Kay 2013) for each voxel in the gray: toon_prfRun.m
+5. run pRF CSS model ([Dumoulin & Wandell, 2008](https://www.ncbi.nlm.nih.gov/pubmed/17977024); [Kay et al., 2013](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3727075/)) for each voxel in the gray: toon_prfRun.m
 
 
 
