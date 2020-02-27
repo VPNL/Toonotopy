@@ -15,6 +15,7 @@ function roiPrep(baseDir, expt, sessions, hems, ROIs, colors, combo, currPre, co
 % colors   {'k', 'b', 'b', 'g', 'g', 'y', 'm'} 
 % combo    1 % toggle on/off - combining dorsal/ventral ROIs in retinotopy. will skip if irrelevant.
 % currPre  'toonRet_f_' % prefix to use for loading ROIs (if you've already named them as 'toonRet_f_', etc); if they are just 'hem_ROI', leave this blank
+% currPost % (for Longi) to use for loading ROIs (if you've already named them as '03_1', etc); leave blank if no suffix
 % comment  % struct for comment field information - session & anat will be
 % auto-filled, can add comment.name and comment.expt (i.e. 
 % comment.name = 'Dawn Finzi';
@@ -55,6 +56,9 @@ end
 if notDefined('currPre')
     currPre = 'toonRet_f_';
 end
+if notDefined('currPost')
+    currPre = '';
+end
 if notDefined('comment.name')
     comment.name = '';
 end
@@ -94,10 +98,10 @@ for s = 1:length(sessions)
     for h = 1:length(hems)
 
         % input and output ROI names for this hemisphere
-        inROIs = strcat(currPre, hems{h}, '_', ROIs);
+        inROIs = strcat(currPre, hems{h}, '_', ROIs, currPost);
         
         if notDefined('newPre') %rename if needed
-            outROIs = strcat(currPre, hems{h}, '_', ROIs);
+            outROIs = inROIs;
         else 
             outROIs = strcat(newPre, hems{h}, '_', ROIs);
         end
