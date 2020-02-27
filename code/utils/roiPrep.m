@@ -103,7 +103,7 @@ for s = 1:length(sessions)
         if notDefined('newPre') %rename if needed
             outROIs = inROIs;
         else 
-            outROIs = strcat(newPre, hems{h}, '_', ROIs);
+            outROIs = strcat(newPre, hems{h}, '_', ROIs, currPost);
         end
         
         outCols = colors; % reset this in each hem iteration
