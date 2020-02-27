@@ -1,4 +1,4 @@
-function roiPrep(baseDir, expt, sessions, hems, ROIs, colors, combo, currPre, comment, newPre)
+function roiPrep(baseDir, expt, sessions, hems, ROIs, colors, combo, currPre, currPost, comment, newPre, backupPre)
 %
 % This function will iterate through ROIs drawn on the mesh,
 % 1) remove overlap from ROIs in ascending heirarchical order
@@ -14,7 +14,7 @@ function roiPrep(baseDir, expt, sessions, hems, ROIs, colors, combo, currPre, co
 % ROIs     {'V1', 'V2v', 'V2d', 'V3v', 'V3d'} % important - these should be in 'cleaning' order (e.g. voxels will be deleted in ROI #2 if the overlap with ROI #1, etc
 % colors   {'k', 'b', 'b', 'g', 'g', 'y', 'm'} 
 % combo    1 % toggle on/off - combining dorsal/ventral ROIs in retinotopy. will skip if irrelevant.
-% currPre  'toonRet_f_' % prefix to use for loading ROIs (if you've already named them as 'toonRet_f_', etc); if they are just 'hem_ROI', leave this blank
+% currPre  % prefix to use for loading ROIs (if you've already named them as 'toonRet_f_', etc); if they are just 'hem_ROI', leave this blank
 % currPost % (for Longi) to use for loading ROIs (if you've already named them as '03_1', etc); leave blank if no suffix
 % comment  % struct for comment field information - session & anat will be
 % auto-filled, can add comment.name and comment.expt (i.e. 
@@ -23,6 +23,7 @@ function roiPrep(baseDir, expt, sessions, hems, ROIs, colors, combo, currPre, co
 %
 % Optional inputs:
 % newPre   % preFix to add to the ROI name - usualling expt_f/a_. (if you've already named them as 'toonRet_f_', etc, leave this blank
+% backupPre % if you named ROIs with multiple prefixes
 %
 % DF 2020 (adapted from code by JG & SP)
 
@@ -54,10 +55,10 @@ if notDefined('combo')
     combo = 1;
 end
 if notDefined('currPre')
-    currPre = 'toonRet_f_';
+    currPre = '';
 end
 if notDefined('currPost')
-    currPre = '';
+    currPost = '';
 end
 if notDefined('comment.name')
     comment.name = '';
