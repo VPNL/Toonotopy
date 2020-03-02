@@ -43,6 +43,7 @@ end
 if notDefined('runBase')
     runBase = 'run'; % or 'run';
 end
+
 %% Checks
 % Check and validate inputs and path to vistasoft
 

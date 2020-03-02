@@ -49,7 +49,7 @@ subDir='/Users/kalanit/Courses/psych224/data/TestSubject/TestSubject_190725/'
 cd(subDir)
 
 % -------- Convert MGZ files to NIFTI -------------
-atlas.path   = fullfile('.', '3DAnatomy', 'atlases', 'anatomical', 'vol')xf;
+atlas.path   = fullfile('3DAnatomy','atlases', 'anatomical', 'vol');
 atlas.fnames = {'wang15_mplbl' 'benson14_varea' 'benson14_eccen' 'benson14_angle' 'benson14_sigma'};
 
 for ii = 1:length(atlas.fnames)
@@ -82,8 +82,8 @@ meshrh = fullfile('3DAnatomy', 'rh_inflated_200_1.mat');
 % if you defined a mesh angle for each of your meshes in
 % Gray->mesh view settings -> store mesh settings
 % you can comment out these lines and use your mesh settings
-%  meshAngleSettinglh='lh_medial';
-%  meshAngleSettingrh='rh_medial';
+ % meshAngleSettinglh='lh_medial';
+ % meshAngleSettingrh='rh_medial';
 
 if exist('meshAngleSettinglh','var')
     vw=atlases_loadNsetMesh (vw, meshlh, L,layerMapMode, meshAngleSettinglh);
@@ -242,5 +242,19 @@ for ii = 1:2
     saveas(figH(fig_counter),figname,'jpg');
    fig_counter=fig_counter+1;
 end
+for ii = 1:2
+    vw = viewSet(vw, 'current mesh n', ii);
+    figH(fig_counter)=figure('Color', 'w'); 
+    
+    imagesc(mrmGet(viewGet(vw, 'Mesh'), 'screenshot')/255); axis image; axis off;
+    if ii==1
+        figname=fullfile(subDir,'Images','lh_BensonPolarAngleMap.jpg');
+    else
+         figname=fullfile(subDir,'Images','rh_BensonPolarAngleMap.jpg');
+    end
+    saveas(figH(fig_counter),figname,'jpg');
+   fig_counter=fig_counter+1;
+end
+
 
 

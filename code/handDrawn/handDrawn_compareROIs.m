@@ -1,7 +1,4 @@
-% This script compares hand drawn V1-V3 ROIs to anatomical and bayesian atlas V1-V3 ROIs
-% Run this after you have run atlases_anatomical.m and atlases_bayesian.m
-% it also superimposes the ROI labels on the subject's measured phase map
-%
+% This script compares hand drawn V1-V3 ROIs from multiple raters
 % KGS 2/20
 
 %% set path
@@ -10,68 +7,79 @@ cd(subDir);
 
 %% Open a mrVista 3D view
 vw = mrVista('3');
-%% Load Wang Atlas V1-V3 ROIs
+%% Load HK's V1-V3 ROIs
 
-Wang_ROIs={'WangAtlas_V1d.mat','WangAtlas_V1v.mat' 'WangAtlas_V3d.mat','WangAtlas_V3v.mat' 'WangAtlas_V2d.mat' 'WangAtlas_V2v.mat'};
+HK_ROIs={ 
+'toonRet_CSS_lh_V1_hk.mat',
+'toonRet_CSS_lh_V2d_hk.mat',
+'toonRet_CSS_lh_V2v_hk.mat',
+'toonRet_CSS_lh_V3d_hk.mat',
+'toonRet_CSS_lh_V3v_hk.mat',
+'toonRet_CSS_rh_V1_hk.mat'
+'toonRet_CSS_rh_V2d_hk.mat'
+'toonRet_CSS_rh_V2v_hk.mat'
+'toonRet_CSS_rh_V3d_hk.mat'
+'toonRet_CSS_rh_V3v_hk.mat'};
 %load ROIs
-[vw,ok]=loadROI(vw, Wang_ROIs);    
+[vw,ok]=loadROI(vw, HK_ROIs);    
 
-% set ROI color to blue
-nWang_ROIs = length(Wang_ROIs);
-Wang_color = [ 0 0 1];
-for ii = 1:nWang_ROIs
-   vw = viewSet(vw, 'ROI color', Wang_color, ii); 
+% set ROI color to black
+nHK_ROIs = length(HK_ROIs);
+HK_color = [ 0 0 0];
+for ii = 1:nHK_ROIs
+   vw = viewSet(vw, 'ROI color', HK_color, ii); 
 end
 
-%% Benson Anatomical Atlas V1-V3 ROIs
-Benson_ROIs={'BensonAtlas_V1.mat','BensonAtlas_V2.mat','BensonAtlas_V3.mat'};
+%% load JR's V1-V3 ROIs
+JR_ROIs={
+'ToonRet_css_lh_v1_jr.mat',
+'ToonRet_css_lh_v2d_jr.mat',
+'ToonRet_css_lh_v2v_jr.mat',
+'ToonRet_css_lh_v3d_jr.mat',
+'ToonRet_css_lh_v3v_jr.mat',
+'ToonRet_css_rh_v1_jr.mat',
+'ToonRet_css_rh_v2d_jr.mat',
+'ToonRet_css_rh_v2v_jr.mat',
+'ToonRet_css_rh_v3d_jr.mat',
+'ToonRet_css_rh_v3v_jr.mat'};
 %load ROIs
-[vw,ok]=loadROI(vw, Benson_ROIs);    
+[vw,ok]=loadROI(vw, JR_ROIs);    
 
-nBenson_ROIs = length(Benson_ROIs);
-% set ROI color to yellow
-Benson_color = [ 1 1 0];
-startROI=nWang_ROIs;
-endROI=nWang_ROIs+nBenson_ROIs;
+nJR_ROIs = length(JR_ROIs);
+
+% set ROI color to pink
+JR_color =  [ 1 .5 1]; %
+startROI=nHK_ROIs;
+endROI=nHK_ROIs+nJR_ROIs;
 for ii = startROI+1:endROI
-   vw = viewSet(vw, 'ROI color', Benson_color, ii); 
+   vw = viewSet(vw, 'ROI color', JR_color, ii); 
 end
 
-%% Benson Bayesian Atlas V1-V3 ROIs
-Benson_BayesianROIs={'BensonBayesianAtlas_V1.mat','BensonBayesianAtlas_V2.mat','BensonBayesianAtlas_V3.mat'};
+%% KGS V1-V3 ROIs
+KGS_ROIs={
+'ToonRet_CSS_lh_V1_kgs.mat',
+'ToonRet_CSS_lh_V2d_kgs.mat',
+'ToonRet_CSS_lh_V2v_kgs.mat',
+'ToonRet_CSS_lh_V3d_kgs.mat',
+'ToonRet_CSS_lh_V3v_kgs.mat',
+'ToonRet_CSS_rh_V1_kgs.mat',
+'ToonRet_CSS_rh_V2d_kgs.mat',
+'ToonRet_CSS_rh_V2v_kgs.mat',
+'ToonRet_CSS_rh_V3d_kgs.mat'
+'ToonRet_CSS_rh_V3v_kgs.mat'};
 %load ROIs
-[vw,ok]=loadROI(vw, Benson_BayesianROIs);    
-nBensonBayesian_ROIs = length(Benson_BayesianROIs);
+[vw,ok]=loadROI(vw, KGS_ROIs);    
+nKGS_ROIs = length(KGS_ROIs);
 
 startROI=endROI;
-endROI=startROI+nBensonBayesian_ROIs;
+endROI=startROI+nKGS_ROIs;
 
 % set ROI color to white
-BensonBayesian_color = [ 1 1 1];
+KGS_color = [ 1 1 1];
 for ii = startROI+1:endROI
-   vw = viewSet(vw, 'ROI color', BensonBayesian_color, ii); 
+   vw = viewSet(vw, 'ROI color', KGS_color, ii); 
 end
 
-%% edit this to your list of ROI names
-% Your ROIs should be stored in SubjectSession/3DAnatomy/ROIs
-
-myROIs={'toonRet_CSS_rh_V1_HK.mat'	...
-    'toonRet_CSS_rh_V2d_hk.mat','toonRet_CSS_rh_V2v_hk?.mat'...
-    'toonRet_CSS_rh_V3d_hk.mat','toonRet_CSS_rh_V3v_hk.mat'...
-    'toonRet_CSS_lh_V1_hk.mat'	...
-    'toonRet_CSS_lh_V2d_hk.mat','toonRet_CSS_lh_V2v_hk.mat'...
-    'toonRet_CSS_lh_V3d_hk.mat','toonRet_CSS_lh_V3v_hk.mat'};
-%load ROIs
-[vw,ok]=loadROI(vw, myROIs);  
-% set ROI color to black
-my_color=[ 0 0 0];
-nmyROIs=length(myROIs);
-startROI=endROI;
-endROI=startROI+nmyROIs;
-
-for ii = startROI+1:endROI
-   vw = viewSet(vw, 'ROI color', my_color, ii); 
-end
 
 %% load & update meshes
 
@@ -85,8 +93,8 @@ meshrh = fullfile('3DAnatomy', 'rh_inflated_200_1.mat');
 % if you defined a mesh angle  for each of your meshes in
 % Gray->mesh view settings -> store mesh settings
 % you can remove these comments and use your mesh settings
-% meshAngleSettinglh='lh_medial';
-% meshAngleSettingrh='rh_medial';
+meshAngleSettinglh='lh_medial';
+meshAngleSettingrh='rh_medial';
 
 if exist('meshAngleSettinglh','var')
     vw=atlases_loadNsetMesh (vw, meshlh, L, 'all', meshAngleSettinglh);
@@ -100,7 +108,7 @@ else
 end
 
 vw = meshUpdateAll(vw);
-
+%%
 fig_counter=1;
 
 % Copy the meshes to Matlab figures & save
@@ -112,9 +120,9 @@ for ii = 1:2
     figH(fig_counter)=figure('Color', 'w'); 
     imagesc(mrmGet(viewGet(vw, 'Mesh'), 'screenshot')/255); axis image; axis off; 
     if ii==1
-        figname=fullfile(subDir,'Images','lh_compare_V1V2V3.jpg');
+        figname=fullfile(subDir,'Images','lh_compare_handDrawnV1V2V3.jpg');
     else
-        figname=fullfile(subDir,'Images','rh_compare_V1V2V3.jpg');
+        figname=fullfile(subDir,'Images','rh_compare_handDrawnV1V2V3.jpg');
     end
     saveas(figH(fig_counter),figname,'jpg');
     fig_counter=fig_counter+1;
@@ -143,7 +151,7 @@ vw = viewSet(vw, 'current mesh n', 1);
 vw=cmapSetLumColorPhaseMap(vw, 'left');vw=refreshScreen(vw); vw = meshColorOverlay(vw);
 figH(fig_counter)=figure('Color', 'w'); 
 imagesc(mrmGet(viewGet(vw, 'Mesh'), 'screenshot')/255); axis image; axis off; 
-figname=fullfile(subDir,'Images','lh_compare_V1V2V3_withPhasemap.jpg');
+figname=fullfile(subDir,'Images','lh_compare_handDrawnV1V2V3_withPhasemap.jpg');
 saveas(figH(fig_counter),figname,'jpg');
 fig_counter=fig_counter+1;
     
@@ -152,7 +160,7 @@ vw = viewSet(vw, 'current mesh n', 2);
 vw=cmapSetLumColorPhaseMap(vw, 'right');vw=refreshScreen(vw); vw = meshColorOverlay(vw);
 figH(fig_counter)=figure('Color', 'w');
 imagesc(mrmGet(viewGet(vw, 'Mesh'), 'screenshot')/255); axis image; axis off; 
-figname=fullfile(subDir,'Images','rh_compare_V1V2V3_withPhasemap.jpg');
+figname=fullfile(subDir,'Images','rh_compare_handDrawnV1V2V3_withPhasemap.jpg');
 saveas(figH(fig_counter),figname,'jpg');
 
 %% just for fun we can also look at the eccentricity map
@@ -160,17 +168,14 @@ vw = viewSet(vw, 'display mode', 'map');
 vw = setDisplayMode(vw, 'map');
 vw.ui.ampMode=setColormap(vw.ui.ampMode,'hsvTbCmap');vw=refreshScreen(vw); vw = meshColorOverlay(vw);
 vw = meshUpdateAll(vw);
+vw = viewSet(vw, 'current mesh n', 1);
+figH(fig_counter)=figure('Color', 'w');
+imagesc(mrmGet(viewGet(vw, 'Mesh'), 'screenshot')/255); axis image; axis off; 
+figname=fullfile(subDir,'Images','lh_compare_handDrawnV1V2V3_withECCmap.jpg');
+saveas(figH(fig_counter),figname,'jpg');
 
-for ii = 1:2
-    vw = viewSet(vw, 'current mesh n', ii);
-    figH(fig_counter)=figure('Color', 'w'); 
-    imagesc(mrmGet(viewGet(vw, 'Mesh'), 'screenshot')/255); axis image; axis off; 
-    if ii==1
-        figname=fullfile(subDir,'Images','lh_compare_V1V2V3eccen.jpg');
-    else
-        figname=fullfile(subDir,'Images','rh_compare_V1V2V3eccen.jpg');
-    end
-    saveas(figH(fig_counter),figname,'jpg');
-    fig_counter=fig_counter+1;
-end
-
+vw = viewSet(vw, 'current mesh n', 2);
+figH(fig_counter)=figure('Color', 'w');
+imagesc(mrmGet(viewGet(vw, 'Mesh'), 'screenshot')/255); axis image; axis off; 
+figname=fullfile(subDir,'Images','rh_compare_handDrawnV1V2V3_withECCmap.jpg');
+saveas(figH(fig_counter),figname,'jpg');

@@ -15,7 +15,7 @@
 subDir='/Users/kalanit/Courses/psych224/data/TestSubject/TestSubject_190725/'
 dt  =  'Averages'; 
 prfModel =  'retModel-cssFit-gFit.mat'; 
-fspath =  fullfile('.', '3DAnatomy', 'FreeSurferSegmentation_TestSubject'); 
+fspath =  fullfile('3DAnatomy', 'FreeSurferSegmentation_TestSubject'); 
 
 vistaExportMeshData(subDir, dt, prfModel, fspath);
 
@@ -33,7 +33,7 @@ freeview -f surf/rh.inflated:overlay=../atlases/data/rh.varexp.mgz:overlay_thres
 %{
 # To run the bayesian atlas, use the <register_retinotopy> function call. 
 #   To get help with the input arguments, use this command
-docker run nben/neuropythy register_retinotopy --help
+docker run nben/neuropythyvw = meshUpdateAll(vw); register_retinotopy --help
 
 cd ~/Box/Psych_224/TestSubject_190725/
 mkdir -p 3DAnatomy/atlases/bayesian/surf
@@ -64,7 +64,7 @@ docker run \
 %}
 
 %% Convert the atlas outputs to RAS
-pth = fullfile('.', '3DAnatomy', 'atlases', 'bayesian', 'vol');
+pth = fullfile('3DAnatomy', 'atlases', 'bayesian', 'vol');
 d = dir(fullfile(pth, '*.mgz'));
 for ii = 1:length(d)
     mgzfname = fullfile(d(ii).folder, d(ii).name);
@@ -106,7 +106,7 @@ else
     vw=atlases_loadNsetMesh (vw, meshrh, L,layerMapMode);
 end
 % 
-% vw = meshUpdateAll(vw);
+ vw = meshUpdateAll(vw);
 
 
 %% View the Benson V1-V3 labels as ROIs in mrVista
