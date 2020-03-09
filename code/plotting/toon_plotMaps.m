@@ -1,7 +1,9 @@
 function toon_plotMaps(subDir,vw,meshlh, meshrh,meshAngleSettinglh,meshAngleSettingrh)
 
+subDir='/share/kalanit/biac2/kgs/projects/Toonotopy/data/TestSubject2/';
 
 %% load & set meshes
+
 % default meshes
 if notDefined('meshlh')
     meshlh = fullfile('3DAnatomy', 'lh_inflated_200_1.mat');
@@ -19,8 +21,8 @@ end
 % % define a mesh angle setting for each of your meshes in
 % % Gray->mesh view settings -> store mesh settings
 % % if you do not have such a setting, comment the next 2 lines
-% meshAngleSettinglh='lh_medial';
-% meshAngleSettingrh='rh_medial';
+meshAngleSettinglh='lh_lateral';
+ meshAngleSettingrh='rh_lateral';
 
 % define lights
 L.ambient=[.4 .4 .4];
@@ -43,7 +45,10 @@ end
 vw = viewSet(vw, 'display mode', 'ph');
 vw = setDisplayMode(vw, 'ph');
 vw = viewSet(vw, 'current mesh n', 1);
-vw=cmapSetLumColorPhaseMap(vw, 'left');
+%vw=cmapSetLumColorPhaseMap(vw, 'right'); %Use this for Matlab2019
+ vw=cmapSetLumColorPhaseMap(vw, 'left'); %Use this for 2014
+
+
 vw=refreshScreen(vw); vw = meshColorOverlay(vw);
 
 fig_counter=1;
@@ -57,10 +62,13 @@ end
 saveas(figH(fig_counter),figname,'jpg');
 fig_counter=fig_counter+1;
     
-% update right mesh with phase map & make figure
+% update rightt mesh with phase map & make figure
 vw = viewSet(vw, 'current mesh n', 2);
-vw=cmapSetLumColorPhaseMap(vw, 'right');
+ vw=cmapSetLumColorPhaseMap(vw, 'right'); %Use this for Matlab 2014
+%vw=cmapSetLumColorPhaseMap(vw, 'left'); %Use this for Matlab 2019
+
 vw=refreshScreen(vw); vw = meshColorOverlay(vw);
+
 figH(fig_counter)=figure('Color', 'w','name','RH phase map');
 img{4}=imagesc(mrmGet(viewGet(vw, 'Mesh'), 'screenshot')/255); axis image; axis off; 
 if exist('meshAngleSettingrh','var')

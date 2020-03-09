@@ -19,6 +19,11 @@ function vw=toon_initRM(prfModel, ROIs,cothresh, dt, scan)
 % prfModel =  'retModel-cssFit-fFit.mat';
 % ROIs={ 'ToonRet_CSS_lh_V1_kgs.mat','ToonRet_CSS_rh_V1_kgs.mat'}
 %
+%ROIs = {'toonRet_f_rh_V3v.mat', 'toonRet_f_rh_V3d.mat',...
+%'toonRet_f_rh_V2v.mat', 'toonRet_f_rh_V2d.mat', 'toonRet_f_rh_V1.mat',...
+%'toonRet_f_lh_V2.mat', 'toonRet_f_lh_V2d.mat', 'toonRet_f_lh_V2v.mat',...
+%'toonRet_f_lh_V3v.mat', 'toonRet_f_lh_V3d.mat'}
+
 % vw=toon_initRM(prfModel, ROIs);
 %
 % kgs 02/20
@@ -27,7 +32,7 @@ function vw=toon_initRM(prfModel, ROIs,cothresh, dt, scan)
   
 
 if notDefined('prfModel')
-   display('Error no pRF model is defined');
+       display('Error no pRF model is defined');
    return
 end
 

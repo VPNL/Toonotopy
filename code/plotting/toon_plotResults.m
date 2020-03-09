@@ -22,7 +22,7 @@
 
 %% set session parameters
 % set path
-subDir='/Users/kalanit/Courses/psych224/data/TestSubject/TestSubject_190725/';
+subDir='/share/kalanit/biac2/kgs/projects/Toonotopy/data/TestSubject2'; %/TestSubject_190725/';
 cd(subDir);
 
 % set data type and scan
@@ -30,8 +30,9 @@ dt =  'Averages'; scan=1;
 
 % set pRF model
 prfModel =  'retModel-cssFit-fFit.mat';
-
-% set ROIs 
+ROIs ={};
+%{ 
+set ROIs 
 ROIs={
 'ToonRet_CSS_lh_V1_kgs.mat',
 'ToonRet_CSS_lh_V2v_kgs.mat',
@@ -43,6 +44,13 @@ ROIs={
 'ToonRet_CSS_rh_V2d_kgs.mat',
 'ToonRet_CSS_rh_V3v_kgs.mat'
 'ToonRet_CSS_rh_V3d_kgs.mat'};
+%}
+ROIs = {'toon_f_lh_V1.mat', ...
+	'toon_f_lh_V2d.mat', 'toon_f_lh_V2v.mat', 'toon_f_lh_V3d.mat'...
+	'toon_f_lh_V3v.mat','toonRet_CSS_LO1_lh_mr','toonRet_CSS_LO2_rh_mr', 'toonRet_CSS_TO1_rh_mr','toonRet_CSS_TO2_rh_mr',...
+    'toon_f_rh_V1.mat', 'toon_f_rh_V2v.mat', 'toon_f_rh_V2d.mat'...
+	'toon_f_rh_V3v.mat', 'toon_f_rh_V3d.mat',  'toonRet_CSS_LO1_rh_mr','toonRet_CSS_LO2_rh_mr','toonRet_CSS_TO1_rh_mr'...
+    'toonRet_CSS_TO2_rh_mr'};
 
 % set cothresh for thresholding pRF model
 cothresh=0.1; % 10% variance explained
@@ -67,8 +75,8 @@ meshrh = fullfile('3DAnatomy', 'rh_inflated_200_1.mat');
 % define a mesh angle setting for each of your meshes in
 % Gray->mesh view settings -> store mesh settings
 % if you do not have such a setting, comment the next 2 lines
-meshAngleSettinglh='lh_medial';
-meshAngleSettingrh='rh_medial';
+meshAngleSettinglh= 'lh_lateral';
+meshAngleSettingrh= 'rh_lateral';
 
 % plot maps & save figures
 if notDefined('meshAngleSettinglh') || notDefined('meshAngleSettingrh')     
@@ -97,8 +105,8 @@ vw=toon_plotCoverage(vw, method, cothresh, prf_size, nboot,nrows,ncols);
 
 %% plot pRF eccentricity vs size
 
-lhROIs=1:5; lh_pRF_DATA = plot_MultiEccSigma(vw,lhROIs);
+lhROIs=[1:5]; lh_pRF_DATA = plot_MultiEccSigma(vw,lhROIs);
 figname=fullfile(subDir,'Images', 'pRFplots', ['lh_SizeVsEcc.jpg']); saveas(gcf,figname,'jpg');
 
-rhROIs=6:10; rh_pRF_DATA = plot_MultiEccSigma(vw,rhROIs);
+rhROIs=[6:10]; rh_pRF_DATA = plot_MultiEccSigma(vw,rhROIs);
 figname=fullfile(subDir,'Images', 'pRFplots',  ['rh_SizeVsEcc.jpg']); saveas(gcf,figname,'jpg');
