@@ -1,28 +1,14 @@
 # Instructions for implementing Noah & Jon's atlas (KGS 2019):
 
 ## 1) Install FreeSurfer and Docker
-1. FreeSurfer
-https://surfer.nmr.mgh.harvard.edu/fswiki/DownloadAndInstall
-https://surfer.nmr.mgh.harvard.edu/fswiki/MacOsInstall
-You may need to override the default mac security that do not allow apps from unidentified developers
-https://www.cnet.com/how-to
-/3-ways-to-install-apps-from-unidentified-developers-on-macos-sierra/
-
-If you have a mac you will also need to install Xquartz (see Freesurfer instructions above).
-
-You will need to add FREESURFER_HOME to your path; To do so edit your ~/.bashrc file to contain the lines:
+1. FreeSurfer (https://surfer.nmr.mgh.harvard.edu/fswiki/DownloadAndInstall; https://surfer.nmr.mgh.harvard.edu/fswiki/MacOsInstall). If you have a mac you will also need to install Xquartz (see Freesurfer instructions above). You will need to add FREESURFER_HOME to your path; To do so edit your ~/.bashrc file to contain the lines:
 ```
 export FREESURFER_HOME=/Applications/freesurfer
 source $FREESURFER_HOME/SetUpFreeSurfer.sh
 ```
 
-2. Docker
-https://docs.docker.com/docker-for-mac/install/
-
-Installation should not be difficult. If you want more information, see the Freesurfer and Docker pages on the winawerlab wiki page: https://wikis.nyu.edu/display/winawerlab/Software
-
-To run the Benson Atlas you need to set the docker to use ample compute resources.
-In Docker->Resources,set: (i) CPUs = 8,(ii) Memory = 12 GB,and (iii) Swap = 4GB
+2. Docker (https://docs.docker.com/docker-for-mac/install/). Installation should not be difficult. If you want more information, see the Freesurfer and Docker pages on the winawerlab wiki page: https://wikis.nyu.edu/display/winawerlab/Software. To run the Benson Atlas you need to set the docker to use ample compute resources.
+In Docker->Resources, set: (i) CPUs = 8,(ii) Memory = 12 GB, and (iii) Swap = 4GB
 
 ## 2) Download the latest version of Noah Benson's Neuropythy docker
 See GitHub for more: https://github.com/noahbenson/neuropythy/wiki
