@@ -3,7 +3,7 @@
 
 Wide field toonotopy is an experiment designed in 2018. It is used to map pRFs across the entire visual system.
 
-During the experiments participants view while fixating a traveling bar sweepingthe visual field in 4 directions in the following sequence: 
+During the experiments participants view while fixating a traveling bar sweeping the visual field in 4 directions in the following sequence: 
 - left-> right
 - bottom right -> top left
 - top-> bottom
